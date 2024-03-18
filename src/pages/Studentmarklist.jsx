@@ -5,32 +5,33 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 function Studentmarklist() {
-    const [seachMarks, setSearchMarks] = useState({
+    const [searchMarks, setSearchMarks] = useState({
         registerNumber: "",
         batch: ""
     })
     const [batch, setbatch]=useState("")
     const [markData, setmarkData]=useState({})
     const searchMarkStudent = async () => {
-        const { registerNumber, batch } = seachMarks;
+        const { registerNumber, batch } = searchMarks;
         if (!registerNumber || !batch) {
             toast.warning("Please fill the form completely", {
                 position: "top-center"
             });
         }
-        console.log(seachMarks)
-        const result = await getMarksApi(seachMarks.registerNumber, seachMarks.batch)
+        console.log(searchMarks)
+        const result = await getMarksApi(searchMarks.registerNumber, searchMarks.batch)
         if(result.status == 200){
             const {data} = result
             const marks = data.marksData
             setmarkData(marks)
             console.log(result)
-            setbatch(seachMarks.batch)
+            setbatch(searchMarks.batch)
         }
        else{
-        toast.warning("Please fill the form completely", {
+        toast.warning("Register Number not matches", {
             position: "top-center"
         });
+        setbatch("")
        }
     
     }
@@ -41,12 +42,12 @@ function Studentmarklist() {
                 <div className="row justify-content-center mt-3">
                     <div className="col-md-3">
                         <input type="text" placeholder="Enter Register Number" className="form-control"
-                            onChange={(e) => setSearchMarks({ ...seachMarks, registerNumber: e.target.value })}
+                            onChange={(e) => setSearchMarks({ ...searchMarks, registerNumber: e.target.value })}
                         />
                     </div>
                     <div className="col-md-3">
                         <select name="batch" id="batch" className="form-control"
-                            onChange={(e) => setSearchMarks({ ...seachMarks, batch: e.target.value })}>
+                            onChange={(e) => setSearchMarks({ ...searchMarks, batch: e.target.value })}>
                             <option value="" disabled selected>Select Batch</option>
                             <option value="cse">CSE</option>
                             <option value="ece">ECE</option>

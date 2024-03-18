@@ -325,14 +325,14 @@ function Studentlist() {
                     <div class="d-flex justify-content-between w-100">
                         <div class="d-flex w-75">
                             <input type='text' class="form-control w-50" placeholder="search Username"
-                            onChange={(e=>searchByName(e.target.value))}
+                            onChange={(e)=>searchByName(e.target.value)}
                             ></input>
                             <div className="form-floating w-25 ms-3">
                                 <select class="form-select"
                                     name="status" onChange={(e)=>sortby(e.target.value)}
                                     id="floatingSelect" aria-label="Floating label select example">
-                                       <option value="novalue">Please select</option> 
-                                    <option value="id">Id</option>
+                                    <option value="novalue">Please select</option> 
+                                    <option value="id">Register Number</option>
                                     <option value="name">Name</option>
 
                                 </select >
